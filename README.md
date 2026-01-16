@@ -9,7 +9,7 @@ A modern, responsive personal portfolio website showcasing my skills, projects, 
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.23-FF0080?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 
-[Live Demo](https://vaibhav-portfolio.vercel.app) • [Report Bug](https://github.com/vaibhav5860/portfolio/issues) • [Request Feature](https://github.com/vaibhav5860/portfolio/issues)
+[Live Demo](https://vaibhav5860.vercel.app) • [Report Bug](https://github.com/vaibhav5860/portfolio/issues) • [Request Feature](https://github.com/vaibhav5860/portfolio/issues)
 
 </div>
 
