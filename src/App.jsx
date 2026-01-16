@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 import ProjectDetails from './components/ProjectDetails';
+import ScrollIndicator from './components/ScrollIndicator';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -43,6 +44,7 @@ function App() {
     <Router>
       <div className="bg-black min-h-screen text-white selection:bg-white/20 cursor-none">
         <Cursor />
+        <ScrollIndicator />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
