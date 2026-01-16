@@ -23,7 +23,7 @@ const Navbar = () => {
     { name: 'Work', href: 'projects' },
     { name: 'Services', href: 'services' },
     { name: 'Contact', href: 'contact' },
-    { name: 'Resume', href: '/VaibhavRaj-12325142 cv.pdf', isExternal: true },
+    { name: 'Resume', href: '/VaibhavRaj.pdf', isExternal: true },
   ];
 
   const scrollToSection = (e, sectionId) => {
