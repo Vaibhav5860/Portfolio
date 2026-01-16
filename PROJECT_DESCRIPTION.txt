@@ -1,0 +1,498 @@
+================================================================================
+                    PORTFOLIO PROJECT - COMPLETE DOCUMENTATION
+                              By: Vaibhav Raj
+================================================================================
+
+================================================================================
+                              PROJECT OVERVIEW
+================================================================================
+
+This is a modern, responsive personal portfolio website built for Vaibhav Raj,
+a Computer Science student and Web Developer. The portfolio showcases his skills,
+projects, services, and provides a contact form for potential clients/employers.
+
+The project is built using React.js with Vite as the build tool and uses 
+Tailwind CSS for styling. It features smooth animations powered by Framer Motion,
+a custom cursor effect, and EmailJS integration for the contact form.
+
+Key Features:
+- Modern dark-themed design with glassmorphism effects
+- Smooth scroll-triggered animations
+- Custom animated cursor
+- Interactive project showcase with hover effects
+- Working contact form with EmailJS integration
+- Fully responsive design (mobile-friendly)
+- Route-based navigation for project details
+
+
+================================================================================
+                              FILE STRUCTURE
+================================================================================
+
+portfolio/
+│
+├── eslint.config.js         # ESLint configuration
+├── index.html               # Main HTML entry point
+├── package.json             # Project dependencies and scripts
+├── postcss.config.js        # PostCSS configuration
+├── README.md                # Project readme
+├── vite.config.js           # Vite bundler configuration
+│
+├── public/                  # Public static assets
+│   └── vite.svg             # Vite logo favicon
+│
+├── src/                     # Source code directory
+│   ├── App.css              # Default Vite CSS (not actively used)
+│   ├── App.jsx              # Main application component with routing
+│   ├── data.js              # Central data store for portfolio content
+│   ├── index.css            # Global styles and Tailwind configuration
+│   ├── main.jsx             # React entry point
+│   │
+│   ├── assets/              # Local asset files
+│   │   ├── dp.png           # Profile image (main)
+│   │   ├── dp (1).png       # Profile image variant
+│   │   ├── dp1.png          # Profile image variant
+│   │   └── dp2.png          # Profile image variant
+│   │
+│   └── components/          # React components
+│       ├── Contact.jsx      # Contact section with form
+│       ├── Cursor.jsx       # Custom animated cursor
+│       ├── Footer.jsx       # Footer section
+│       ├── Hero.jsx         # Hero/landing section
+│       ├── Navbar.jsx       # Navigation bar
+│       ├── Process.jsx      # Work process section
+│       ├── ProjectDetails.jsx # Individual project detail page
+│       ├── Projects.jsx     # Projects showcase section
+│       ├── Services.jsx     # Services section
+│       └── Skills.jsx       # Skills/expertise section
+
+
+================================================================================
+                          DETAILED FILE DESCRIPTIONS
+================================================================================
+
+------------------------------------------------------------------------------
+                            ROOT CONFIGURATION FILES
+------------------------------------------------------------------------------
+
+1. package.json
+   -------------
+   Purpose: Project configuration and dependency management
+   
+   Dependencies:
+   - @emailjs/browser (v4.4.1)  : Email sending functionality
+   - @tailwindcss/postcss       : Tailwind CSS PostCSS plugin
+   - framer-motion (v12.23.24)  : Animation library
+   - lucide-react (v0.555.0)    : Icon library
+   - react (v19.2.0)            : UI library
+   - react-dom (v19.2.0)        : React DOM renderer
+   - react-router-dom (v7.11.0) : Client-side routing
+   
+   Scripts:
+   - npm run dev     : Start development server
+   - npm run build   : Build for production
+   - npm run lint    : Run ESLint
+   - npm run preview : Preview production build
+
+
+2. index.html
+   -----------
+   Purpose: Main HTML entry point for the application
+   
+   Features:
+   - Loads Google Fonts (Inter & Syne)
+   - Sets up viewport for responsive design
+   - Contains root div for React mounting
+   - Sets page title: "Vaibhav Raj | Portfolio"
+
+
+3. vite.config.js
+   ---------------
+   Purpose: Vite build tool configuration
+   
+   Configuration:
+   - Uses @vitejs/plugin-react for React support
+   - Enables JSX transformation and Fast Refresh
+
+
+4. eslint.config.js
+   -----------------
+   Purpose: ESLint linting configuration
+   
+   Features:
+   - Ignores dist folder
+   - Applies to .js and .jsx files
+   - Includes React Hooks rules
+   - Includes React Refresh plugin for HMR
+
+
+5. postcss.config.js
+   ------------------
+   Purpose: PostCSS configuration for CSS processing
+   
+   Plugins:
+   - @tailwindcss/postcss : Tailwind CSS integration
+   - autoprefixer         : Automatic vendor prefixes
+
+
+------------------------------------------------------------------------------
+                            SOURCE FILES (src/)
+------------------------------------------------------------------------------
+
+6. main.jsx
+   ---------
+   Purpose: React application entry point
+   
+   Function: 
+   - Creates React root using createRoot API
+   - Renders App component wrapped in StrictMode
+   - Imports global CSS styles
+
+
+7. App.jsx
+   --------
+   Purpose: Main application component and routing configuration
+   
+   Features:
+   - Sets up React Router with BrowserRouter
+   - Defines two routes:
+     * "/" - Home page (shows all sections)
+     * "/project/:id" - Individual project details page
+   - Includes ScrollToTop component for route change scroll reset
+   - Wraps everything with custom Cursor component
+   - Sets base styling: black background, white text
+   
+   Components rendered on Home:
+   - Navbar, Hero, Skills, Services, Projects, Process, Contact, Footer
+
+
+8. data.js
+   --------
+   Purpose: Central data store for all portfolio content
+   
+   Exports:
+   
+   a) personalInfo - Object containing:
+      - name: "Vaibhav Raj"
+      - role: "Computer Science Student & Web Developer"
+      - email, phone, linkedin, github URLs
+      - about: Personal bio
+      - socials: Array of social links with icons
+   
+   b) skills - Object with skill categories:
+      - languages: ["C++", "Python", "Java", "SQL"]
+      - web: ["HTML", "CSS", "PHP", "JavaScript", "React.js", etc.]
+      - tools: ["MongoDB", "MySQL", "Git", "GitHub", etc.]
+      - softSkills: ["Problem-Solving", "Team Collaboration", etc.]
+   
+   c) projects - Array of project objects:
+      - Go Food Website (Full Stack MERN)
+      - Weather App with Voice Search (React)
+      - Laptop Simulation (Frontend)
+   
+   d) certificates - Array of certification objects
+   
+   e) education - Array of education entries
+   
+   f) achievements - Array of achievements
+
+
+9. index.css
+   ----------
+   Purpose: Global styles and Tailwind CSS configuration
+   
+   Features:
+   - Imports Tailwind CSS
+   - Custom theme variables:
+     * --font-sans: 'Inter'
+     * --font-display: 'Syne'
+     * Custom colors for dark theme
+   
+   - Base layer styles:
+     * Smooth scrolling
+     * Custom cursor (cursor: none)
+     * Noise texture overlay on body
+     * Custom text selection colors
+   
+   - Utility classes:
+     * .glass - Glassmorphism effect
+     * .glass-card - Glass card variant
+     * .text-gradient - Gradient text effect
+     * .text-outline - Outlined text effect
+     * .hide-scrollbar - Hidden scrollbar utility
+
+
+10. App.css
+    --------
+    Purpose: Default Vite styles (mostly unused)
+    Note: Contains default Vite template styles, not actively used in the project
+
+
+------------------------------------------------------------------------------
+                          COMPONENT FILES (src/components/)
+------------------------------------------------------------------------------
+
+11. Navbar.jsx
+    -----------
+    Purpose: Fixed navigation bar with mobile menu
+    
+    Features:
+    - Fixed position at top of page
+    - Transparent initially, becomes semi-transparent on scroll
+    - Desktop: Shows Work, Services, Contact links
+    - Mobile: Hamburger menu with fullscreen overlay
+    - Logo "Vaibhav." on left
+    - Uses Framer Motion for entrance animation
+    - Glass effect on scroll
+
+
+12. Hero.jsx
+    ---------
+    Purpose: Landing/hero section of the portfolio
+    
+    Features:
+    - Large typography: "BUILDING DIGITAL VALUE."
+    - Profile image with gradient overlay
+    - Mouse-following spotlight effect on background grid
+    - "Available for work" status indicator
+    - Location indicator (Based in India)
+    - "View Selected Work" CTA button
+    - Text reveal animation on load
+    - Responsive layout (image hidden on mobile)
+
+
+13. Skills.jsx
+    -----------
+    Purpose: Displays technical and soft skills
+    
+    Features:
+    - "Expertise" section heading
+    - Four skill categories displayed in grid:
+      * Languages (C++, Python, Java, SQL)
+      * Web Development (HTML, CSS, React.js, etc.)
+      * Tools & Platforms (MongoDB, Git, etc.)
+      * Soft Skills (Problem-Solving, etc.)
+    - Each category has an icon
+    - Skills displayed as pill/badge tags
+    - Hover effects on category cards
+    - Staggered entrance animations
+
+
+14. Services.jsx
+    -------------
+    Purpose: Displays offered services
+    
+    Features:
+    - "Expertise" section heading
+    - Four service cards:
+      * Design - UI/UX design
+      * Development - Web application development
+      * Strategy - Digital product planning
+      * Mobile - Mobile optimization
+    - Each service has icon, title, description
+    - Hover color transition effects
+    - Staggered animation on scroll
+
+
+15. Projects.jsx
+    -------------
+    Purpose: Showcases portfolio projects
+    
+    Features:
+    - "Selected Works" section heading
+    - Split layout on desktop:
+      * Left: Sticky image preview (changes on hover)
+      * Right: Project list
+    - Project cards show:
+      * Project number
+      * Title
+      * Category
+      * Period/date
+    - Image with overlay showing description and tech stack
+    - Mobile: Inline images for each project
+    - Click navigates to project detail page
+    - AnimatePresence for smooth image transitions
+
+
+16. Process.jsx
+    ------------
+    Purpose: Explains work process methodology
+    
+    Features:
+    - "Process" section heading
+    - Four steps displayed in grid:
+      * 01 - Discovery: Understanding goals and requirements
+      * 02 - Design: Creating intuitive visual systems
+      * 03 - Build: Writing clean, efficient code
+      * 04 - Launch: Deploying to the world
+    - Large step numbers in background
+    - Hover effects on step numbers
+    - Staggered entrance animations
+
+
+17. Contact.jsx
+    ------------
+    Purpose: Contact form and social links
+    
+    Features:
+    - "Let's work together." heading
+    - Availability statement
+    - Social media icon buttons (Mail, GitHub, LinkedIn, Twitter)
+    - Contact form with fields:
+      * Full Name (required)
+      * Email Address (required)
+      * Phone Number (optional)
+      * Message (required)
+    - EmailJS integration for form submission
+    - Form states: idle, sending, success, error
+    - Loading spinner during submission
+    - Success/error message feedback
+
+
+18. Footer.jsx
+    -----------
+    Purpose: Page footer with branding and links
+    
+    Features:
+    - Large "Vaibhav." branding
+    - Tagline: "Crafting digital experiences that leave a lasting impression"
+    - Social links section (LinkedIn, GitHub, Twitter)
+    - Copyright notice with dynamic year
+    - "Designed & Built with passion" tagline
+    - Border separator styling
+
+
+19. Cursor.jsx
+    -----------
+    Purpose: Custom animated cursor effect
+    
+    Features:
+    - Replaces default cursor with custom design
+    - Two cursor elements:
+      * Inner dot (4x4 white circle)
+      * Outer ring (8x8 white border circle)
+    - Follows mouse position with spring animation
+    - Scales up when hovering over interactive elements
+    - Uses mix-blend-mode: difference for visibility
+    - High z-index to stay above all content
+
+
+20. ProjectDetails.jsx
+    -------------------
+    Purpose: Individual project detail page
+    
+    Features:
+    - Accessed via /project/:id route
+    - Back to Projects navigation link
+    - Project header with:
+      * Category and period
+      * Title
+      * Description
+      * View Live button
+      * Source Code button (GitHub)
+    - Project image
+    - Key Features list (bullet points)
+    - Technologies used (pill badges)
+    - Fallback for invalid project ID
+    - Background noise texture
+
+
+------------------------------------------------------------------------------
+                            ASSET FILES (src/assets/)
+------------------------------------------------------------------------------
+
+21. dp.png, dp (1).png, dp1.png, dp2.png
+    -------------------------------------
+    Purpose: Profile/avatar images
+    Note: dp.png is currently used in Hero.jsx as the main profile image
+
+
+------------------------------------------------------------------------------
+                          PUBLIC ASSETS (public/)
+------------------------------------------------------------------------------
+
+22. vite.svg
+    ---------
+    Purpose: Favicon/site icon (Vite logo)
+
+
+================================================================================
+                              HOW IT WORKS
+================================================================================
+
+Application Flow:
+-----------------
+
+1. User visits the website
+   → index.html loads
+   → main.jsx initializes React
+   → App.jsx renders with Router
+
+2. Home Route ("/"):
+   → Home component renders all sections in order:
+      Navbar → Hero → Skills → Services → Projects → Process → Contact → Footer
+   → Custom Cursor follows mouse
+   → Animations trigger as user scrolls (whileInView)
+
+3. Project Detail Route ("/project/:id"):
+   → ProjectDetails component renders
+   → Fetches project data from data.js by ID
+   → Shows full project information
+
+4. Contact Form:
+   → User fills out form
+   → On submit, EmailJS sends email to vaibhav.work5860@gmail.com
+   → Form shows success/error feedback
+
+
+Key Technologies:
+-----------------
+
+1. React 19 - UI library with hooks
+2. Vite - Fast build tool with HMR
+3. Tailwind CSS 4 - Utility-first CSS framework
+4. Framer Motion - Animation library
+5. React Router 7 - Client-side routing
+6. EmailJS - Email service integration
+7. Lucide React - Icon library
+
+
+Styling Approach:
+-----------------
+
+- Dark theme (black background, white/gray text)
+- Glassmorphism effects (backdrop blur, subtle borders)
+- Grid-based layouts
+- Responsive design (mobile-first with md/lg breakpoints)
+- Custom fonts: Syne (display), Inter (body)
+- Subtle noise texture overlay
+- Custom cursor replacing system cursor
+
+
+================================================================================
+                            HOW TO RUN THE PROJECT
+================================================================================
+
+Prerequisites:
+- Node.js (v18+)
+- npm or yarn
+
+Installation:
+1. Navigate to project folder
+2. Run: npm install
+
+Development:
+- Run: npm run dev
+- Open: http://localhost:5173
+
+Production Build:
+- Run: npm run build
+- Output: dist/ folder
+
+Preview Production:
+- Run: npm run preview
+
+
+================================================================================
+                              END OF DOCUMENTATION
+================================================================================
