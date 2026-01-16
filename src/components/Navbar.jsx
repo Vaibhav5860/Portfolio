@@ -23,6 +23,7 @@ const Navbar = () => {
     { name: 'Work', href: 'projects' },
     { name: 'Services', href: 'services' },
     { name: 'Contact', href: 'contact' },
+    { name: 'Resume', href: '/VaibhavRaj-12325142 cv.pdf', isExternal: true },
   ];
 
   const scrollToSection = (e, sectionId) => {
@@ -63,14 +64,26 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={`#${item.href}`}
-                  onClick={(e) => scrollToSection(e, item.href)}
-                  className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-wider"
-                >
-                  {item.name}
-                </a>
+                item.isExternal ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-wider"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={`#${item.href}`}
+                    onClick={(e) => scrollToSection(e, item.href)}
+                    className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-wider"
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
             </div>
 
@@ -96,17 +109,30 @@ const Navbar = () => {
           >
             <div className="flex flex-col gap-8 items-center">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={`#${item.href}`}
-                  onClick={(e) => {
-                    scrollToSection(e, item.href);
-                    setIsOpen(false);
-                  }}
-                  className="text-4xl font-display font-bold text-white hover:text-gray-300 transition-colors"
-                >
-                  {item.name}
-                </a>
+                item.isExternal ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="text-4xl font-display font-bold text-white hover:text-gray-300 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={`#${item.href}`}
+                    onClick={(e) => {
+                      scrollToSection(e, item.href);
+                      setIsOpen(false);
+                    }}
+                    className="text-4xl font-display font-bold text-white hover:text-gray-300 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
               <div className="pt-12 flex gap-8">
                 <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><FaGithub size={24} /></a>
