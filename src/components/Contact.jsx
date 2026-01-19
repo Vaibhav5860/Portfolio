@@ -7,6 +7,10 @@ import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { personalInfo } from '../data';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+
+// Helper to check if link is internal route
+const isInternalLink = (url) => url && url.startsWith('/');
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -110,16 +114,28 @@ const Contact = () => {
                 { icon: FaGithub, href: personalInfo.github },
                 { icon: FaLinkedin, href: personalInfo.linkedin },
                 { icon: FaTwitter, href: personalInfo.twitter }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  variants={item}
-                  className="w-14 h-14 rounded-full border-2 border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
-                >
-                  <social.icon size={20} />
-                </motion.a>
-              ))}
+              ].map((social, index) => {
+                const className = "w-14 h-14 rounded-full border-2 border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300";
+                
+                return isInternalLink(social.href) ? (
+                  <motion.div key={index} variants={item}>
+                    <Link to={social.href} className={className}>
+                      <social.icon size={20} />
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variants={item}
+                    className={className}
+                  >
+                    <social.icon size={20} />
+                  </motion.a>
+                );
+              })}
             </motion.div>
           </motion.div>
 

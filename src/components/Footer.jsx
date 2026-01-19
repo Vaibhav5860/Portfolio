@@ -5,6 +5,29 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { personalInfo } from '../data';
+import { Link } from 'react-router-dom';
+
+// Helper to check if link is internal route
+const isInternalLink = (url) => url && url.startsWith('/');
+
+// Reusable component for social links
+const SocialLink = ({ href, icon: Icon, children }) => {
+  const className = "text-white hover:text-gray-300 transition-colors flex items-center gap-2 group";
+  
+  if (isInternalLink(href)) {
+    return (
+      <Link to={href} className={className}>
+        <Icon size={16} /> {children} <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+      </Link>
+    );
+  }
+  
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      <Icon size={16} /> {children} <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+    </a>
+  );
+};
 
 
 const Footer = () => {
@@ -35,15 +58,9 @@ const Footer = () => {
           >
             <div className="flex flex-col gap-4">
               <span className="text-sm text-gray-500 uppercase tracking-widest">Socials</span>
-              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 group">
-                <FaLinkedin size={16} /> LinkedIn <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 group">
-                <FaGithub size={16} /> GitHub <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href={personalInfo.twitter} className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 group">
-                <FaTwitter size={16} /> Twitter <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-              </a>
+              <SocialLink href={personalInfo.linkedin} icon={FaLinkedin}>LinkedIn</SocialLink>
+              <SocialLink href={personalInfo.github} icon={FaGithub}>GitHub</SocialLink>
+              <SocialLink href={personalInfo.twitter} icon={FaTwitter}>Twitter</SocialLink>
             </div>
           </motion.div>
 
