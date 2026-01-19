@@ -1,23 +1,23 @@
 //seen
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 const Cursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const location = useLocation();
 
+  // Reset hover state when route changes
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+    setIsHovering(false);
+  }, [location.pathname]);
 
+  const setupHoverListeners = useCallback(() => {
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
 
-    window.addEventListener('mousemove', updateMousePosition);
-    
-    // Add hover listeners to all interactive elements
     const interactiveElements = document.querySelectorAll('a, button, input, textarea, .cursor-hover');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleMouseEnter);
@@ -25,13 +25,38 @@ const Cursor = () => {
     });
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
       interactiveElements.forEach(el => {
         el.removeEventListener('mouseenter', handleMouseEnter);
         el.removeEventListener('mouseleave', handleMouseLeave);
       });
     };
   }, []);
+
+  useEffect(() => {
+    const updateMousePosition = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', updateMousePosition);
+    
+    // Setup hover listeners
+    const cleanup = setupHoverListeners();
+
+    return () => {
+      window.removeEventListener('mousemove', updateMousePosition);
+      cleanup();
+    };
+  }, [setupHoverListeners]);
+
+  // Re-attach listeners when route changes (new elements appear)
+  useEffect(() => {
+    // Small delay to let new elements render
+    const timeout = setTimeout(() => {
+      setupHoverListeners();
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, [location.pathname, setupHoverListeners]);
 
   return (
     <>

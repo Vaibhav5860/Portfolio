@@ -6,6 +6,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { personalInfo } from '../data';
 
+
 const Footer = () => {
   return (
     <footer className="py-20 border-t border-white/10 bg-black relative overflow-hidden">
@@ -40,7 +41,7 @@ const Footer = () => {
               <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 group">
                 <FaGithub size={16} /> GitHub <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 group">
+              <a href={personalInfo.twitter} className="text-white hover:text-gray-300 transition-colors flex items-center gap-2 group">
                 <FaTwitter size={16} /> Twitter <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>

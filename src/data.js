@@ -9,6 +9,7 @@ export const personalInfo = {
   phone: "+91-9708681252",
   linkedin: "https://linkedin.com/in/vaibhav5860",
   github: "https://github.com/vaibhav5860",
+  twitter: "/unavailable",
   about: "I am a passionate Computer Science student with a strong foundation in web development and programming. I enjoy building scalable applications and solving complex problems. My expertise lies in the MERN stack, and I am always eager to learn new technologies.",
   socials: [
     {

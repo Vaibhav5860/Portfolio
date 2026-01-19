@@ -109,7 +109,7 @@ const Contact = () => {
                 { icon: Mail, href: `mailto:${personalInfo.email}` },
                 { icon: FaGithub, href: personalInfo.github },
                 { icon: FaLinkedin, href: personalInfo.linkedin },
-                { icon: FaTwitter, href: "#" }
+                { icon: FaTwitter, href: personalInfo.twitter }
               ].map((social, index) => (
                 <motion.a
                   key={index}
