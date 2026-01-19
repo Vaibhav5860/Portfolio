@@ -8,6 +8,28 @@ import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { projects } from '../data';
 
+// Helper function to check if a link is internal (starts with /)
+const isInternalLink = (url) => url && url.startsWith('/');
+
+// Reusable link component that handles both internal and external links
+const ProjectLink = ({ url, children, className }) => {
+    if (!url) return null;
+    
+    if (isInternalLink(url)) {
+        return (
+            <Link to={url} className={className}>
+                {children}
+            </Link>
+        );
+    }
+    
+    return (
+        <a href={url} target="_blank" rel="noopener noreferrer" className={className}>
+            {children}
+        </a>
+    );
+};
+
 const ProjectDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -64,12 +86,18 @@ const ProjectDetails = () => {
 
                             <div className="flex gap-4">
                                 
-                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full hover:bg-white/90 transition-colors font-medium cursor-none">
+                                <ProjectLink 
+                                    url={project.liveUrl} 
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full hover:bg-white/90 transition-colors font-medium cursor-none"
+                                >
                                     View Live <ExternalLink size={18} />
-                                </a>
-                                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-colors font-medium cursor-none">
+                                </ProjectLink>
+                                <ProjectLink 
+                                    url={project.githubUrl} 
+                                    className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full hover:bg-white/10 transition-colors font-medium cursor-none"
+                                >
                                     Source Code <FaGithub size={18} />
-                                </a>
+                                </ProjectLink>
                             </div>
                         </div>
 

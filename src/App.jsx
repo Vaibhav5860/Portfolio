@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 import ProjectDetails from './components/ProjectDetails';
 import ScrollIndicator from './components/ScrollIndicator';
+import ServiceUnavailable from './components/ServiceUnavailable';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -49,6 +50,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/project/:id" element={<ProjectDetails />} />
+          <Route path="/unavailable" element={<ServiceUnavailable />} />
         </Routes>
       </div>
     </Router>
