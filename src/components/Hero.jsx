@@ -40,10 +40,10 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
+    <section id="home" className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-0 md:pt-20">
 
       {/* Profile Image Background Layer */}
-      <div className="absolute right-0 top-0 h-full w-1/2 z-10 pointer-events-none">
+      <div className="absolute right-0 top-0 h-[65vh] md:h-full w-full md:w-1/2 z-10 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
         <img
           src={profileImg}
@@ -52,21 +52,21 @@ const Hero = () => {
         />
       </div>
 
-      <div className="max-w-[90rem] mx-auto px-6 sm:px-12 lg:px-16 relative w-full">
+      <div className="max-w-[90rem] mx-auto px-6 sm:px-12 lg:px-16 relative w-full flex flex-col md:block">
 
         {/* Top Metadata */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-between items-start mb-24 w-full border-b border-white/10 pb-8"
+          className="order-2 md:order-none flex justify-between items-start mb-8 md:mb-24 w-full border-b border-white/10 pb-8 pt-4 md:pt-0"
         >
-          <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
             <div className="h-[1px] w-12 bg-white/20"></div>
             <span className="text-sm font-medium text-gray-400 tracking-widest uppercase">Vaibhav Raj</span>
           </div>
 
-          <div className="hidden md:flex gap-12 text-sm font-medium text-gray-400 z-15">
+          <div className="flex mx-auto md:mx-0 flex-row gap-4 md:gap-12 text-sm font-medium text-gray-400 z-15">
             <div className="flex items-center gap-2 ">
               <Globe size={16} />
               <span>Based in India</span>
@@ -85,9 +85,9 @@ const Hero = () => {
           variants={container}
           initial="hidden"
           animate="visible"
-          className="mb-12"
+          className="order-1 md:order-none mb-0 md:mb-12 mt-0 h-[65vh] md:h-auto flex flex-col justify-end md:justify-center pt-20 md:pt-0"
         >
-          <h1 className="text-[10vw] leading-[0.9] font-display font-bold tracking-tighter text-white mb-8 relative">
+          <h1 className="text-[13vw] md:text-[10vw] leading-[0.9] font-display font-bold tracking-tighter text-white mb-8 relative">
             <div className="overflow-hidden relative z-15">
               <motion.span variants={textReveal} className="block">
                 BUILDING
@@ -96,8 +96,8 @@ const Hero = () => {
             {/* Dual Layer "DIGITAL VALUE" */}
             <div className="relative">
               {/* Layer 1: Behind Image (Normal) */}
-              <div className="overflow-hidden relative z-0">
-                <motion.span variants={textReveal} className="block text-gray-500">
+              <div className="overflow-hidden relative z-10 md:z-0">
+                <motion.span variants={textReveal} className="block text-gray-500 md:text-gray-500">
                   DIGITAL VALUE.
                 </motion.span>
               </div>
@@ -105,7 +105,7 @@ const Hero = () => {
           </h1>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row justify-between items-end gap-12 border-t border-white/10 pt-12">
+        <div className="order-3 md:order-none flex flex-col md:flex-row justify-between items-end gap-12 border-t-0 md:border-t border-white/10 pt-4 md:pt-12">
           <div className="flex flex-col gap-8">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
