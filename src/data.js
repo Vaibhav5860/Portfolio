@@ -72,6 +72,25 @@ export const projects = [
     liveUrl: "/unavailable",
     githubUrl: "/unavailable",
   },
+  {
+    id: "02",
+    title: "Meme Lab 🤣",
+    period: "January’26 – February’26",
+    description: "A web app for watching, creating and sharing memes.",
+    detailDescription: "Meme Lab is an engaging web application that allows users to watch, create, customize, and share memes with ease. The platform features a user-friendly interface where users can select from a variety of meme templates, add their own text, and apply different styles to create humorous content and see trending memes. Built using HTML5, CSS, and JavaScript, Meme Lab showcases skills in full-stack development, including API design and integration and responsive design principles.",
+    points: [
+      "Developed a dynamic meme creation tool using HTML5 Canvas API, allowing users to customize meme templates with text and styles.",
+      "Integrated backend API with JavaScript to handle meme storage, retrieval, and user interactions.",
+      "Implemented responsive design techniques to ensure optimal user experience across various devices and screen sizes.",
+      "Utilized local storage to save user-created memes, enabling easy access and sharing without server dependency.",
+      "Incorporated social sharing features, allowing users to share their memes directly to popular social media platforms.",
+    ],
+    techStack: ["HTML5", "CSS3", "JavaScript", "Canvas API", "Reddit API", "Local Storage"],
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    category: "Full Stack",
+    liveUrl: "https://thememelab.vercel.app/",
+    githubUrl: "https://github.com/Vaibhav5860/meme-lab",
+  }
 ];
 
 export const certificates = [
