@@ -1,3 +1,4 @@
+import { i, image } from "framer-motion/client";
 import { Mail, Phone } from "lucide-react";
 import { FaGithub } from 'react-icons/fa';
 import { FaLinkedin } from 'react-icons/fa';
@@ -98,31 +99,37 @@ export const certificates = [
     name: "Introduction to Internet of Things (IoT)",
     issuer: "NPTEL IIT Kharagpur",
     date: "Apr’25",
+    image: "/unavailable",
   },
   {
     name: "Object-Oriented Programming",
     issuer: "Neocolab",
     date: "Jan’25",
+    image: "/unavailable",
   },
   {
     name: "Data Structures and Algorithms",
     issuer: "Neocolab",
     date: "Jan’25",
+    image: "/unavailable",
   },
   {
     name: "Web Development",
     issuer: "Rising Tech Pro",
     date: "Mar’24",
+    image: "/unavailable",
   },
   {
     name: "Python-3 Bootcamp",
     issuer: "Udemy",
     date: "Feb’24",
+    image: "/unavailable",
   },
   {
     name: "Legacy Responsive Web Design",
     issuer: "FreeCodeCamp",
     date: "Nov’23",
+    image: "/unavailable",
   },
 ];
 
