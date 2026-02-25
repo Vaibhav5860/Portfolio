@@ -1,4 +1,4 @@
-import { i, image } from "framer-motion/client";
+import { i, image, sub } from "framer-motion/client";
 import { Mail, Phone } from "lucide-react";
 import { FaGithub } from 'react-icons/fa';
 import { FaLinkedin } from 'react-icons/fa';
@@ -54,6 +54,7 @@ export const projects = [
   {
     id: "01",
     title: "Rural Classroom Connect",
+    subtitle: "Full-Stack Education Platform",
     period: "October’25 – December’25",
     description: "A full-stack education platform connecting rural classrooms.",
     detailDescription: "Rural Classroom Connect is a comprehensive full-stack education platform designed to bridge the gap between rural classrooms and quality educational resources. The application features a modern, intuitive interface that allows teachers and students to interact, access learning materials, and participate in virtual classes. Built with the MERN stack, it demonstrates proficiency in both frontend and backend development, with particular emphasis on user authentication, database optimization, and responsive design principles.",
@@ -76,6 +77,7 @@ export const projects = [
   {
     id: "02",
     title: "Meme Lab 🤣",
+    subtitle: "Meme Creation and Sharing Platform",
     period: "January’26 – February’26",
     description: "A web app for watching, creating and sharing memes.",
     detailDescription: "Meme Lab is an engaging web application that allows users to watch, create, customize, and share memes with ease. The platform features a user-friendly interface where users can select from a variety of meme templates, add their own text, and apply different styles to create humorous content and see trending memes. Built using HTML5, CSS, and JavaScript, Meme Lab showcases skills in full-stack development, including API design and integration and responsive design principles.",
@@ -94,7 +96,8 @@ export const projects = [
   },
   {
     id: "03",
-    title: "projectHub - project management tool",
+    title: "projectHub",
+    subtitle: "Project Management Tool",
     period: "February’26 – March’26",
     description: "A project management tool for teams to collaborate and track progress.",
     detailDescription: "ProjectHub is a comprehensive project management tool designed to facilitate team collaboration and progress tracking. The platform offers features such as task assignment, progress visualization, and real-time updates, enabling teams to manage their projects efficiently. Built with the MERN stack, ProjectHub demonstrates proficiency in both frontend and backend development, with a focus on user experience and performance optimization.",
@@ -110,7 +113,7 @@ export const projects = [
     category: "Full Stack",
     liveUrl: "https://project-hub-web.vercel.app/",
     githubUrl: "https://github.com/Vaibhav5860/projectHub",
-    
+
   }
 ];
 
