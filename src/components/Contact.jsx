@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Loader2 } from 'lucide-react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { personalInfo } from '../data';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { personalInfo } from '../personalData';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -44,7 +44,7 @@ const Contact = () => {
           phone: formData.phone,
           title: "New Portfolio Inquiry",
           time: new Date().toLocaleString(),
-          message: `Phone Number: ${formData.phone}\n\nMessage:\n${formData.message}`,
+          message: `Phone Number: ${formData.phone || 'Not provided'}\n\nMessage:\n${formData.message}`,
           to_name: personalInfo.name,
           my_name: personalInfo.name,
           my_email: personalInfo.email,
@@ -113,10 +113,11 @@ const Contact = () => {
                 { icon: Mail, href: `mailto:${personalInfo.email}` },
                 { icon: FaGithub, href: personalInfo.github },
                 { icon: FaLinkedin, href: personalInfo.linkedin },
-                { icon: FaTwitter, href: personalInfo.twitter }
+                { icon: FaTwitter, href: personalInfo.twitter },
+                { icon: FaInstagram, href: personalInfo.instagram }
               ].map((social, index) => {
                 const className = "w-14 h-14 rounded-full border-2 border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300";
-                
+
                 return isInternalLink(social.href) ? (
                   <motion.div key={index} variants={item}>
                     <Link to={social.href} className={className}>
@@ -172,14 +173,14 @@ const Contact = () => {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm uppercase tracking-wider text-gray-500">Phone Number</label>
+              <label className="text-sm uppercase tracking-wider text-gray-500">Phone Number </label><span className="text-gray-500 text-xs">(optional)</span>
               <input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:border-white outline-none transition-colors text-lg"
-                placeholder="Enter your phone number"
+                placeholder="Enter your phone number (optional)"
               />
             </div>
             <div className="space-y-2">

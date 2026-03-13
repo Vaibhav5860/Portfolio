@@ -6,7 +6,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
-import { projects } from '../data';
+import { projects } from '../projectsData';
 
 // Helper function to check if a link is internal (starts with /)
 const isInternalLink = (url) => url && url.startsWith('/');

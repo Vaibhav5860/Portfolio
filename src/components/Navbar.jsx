@@ -1,11 +1,8 @@
-//seen
-
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { personalInfo } from '../data';
+import { personalInfo } from '../personalData';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -46,8 +43,9 @@ const Navbar = () => {
           }`}
       >
         <div className="max-w-9xl mx-auto px-6 ">
-          <div className={`mx-auto max-w-2xl glass rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-black/50 backdrop-blur-xl border-white/10' : 'bg-transparent border-transparent'
+          <div className={`mx-auto max-w-2xl glass rounded-full px-4 py-2 flex items-center justify-between transition-all duration-300 bg-black/50 backdrop-blur-xl border-white/10
             }`}>
+
             {/* Logo */}
             <a 
               href="/" 
@@ -70,7 +68,7 @@ const Navbar = () => {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-wider"
+                    className="inline-flex items-center rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wider text-black transition-all duration-300 hover:bg-gray-200"
                   >
                     {item.name}
                   </a>
@@ -116,7 +114,7 @@ const Navbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsOpen(false)}
-                    className="text-4xl font-display font-bold text-white hover:text-gray-300 transition-colors"
+                    className="rounded-full bg-white px-8 py-3 text-lg font-display font-bold uppercase tracking-wider text-black transition-all duration-300 hover:bg-gray-200"
                   >
                     {item.name}
                   </a>

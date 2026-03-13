@@ -3,8 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { personalInfo } from '../data';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { personalInfo } from '../personalData';
 import { Link } from 'react-router-dom';
 
 // Helper to check if link is internal route
@@ -59,8 +59,12 @@ const Footer = () => {
             <div className="flex flex-col gap-4">
               <span className="text-sm text-gray-500 uppercase tracking-widest">Socials</span>
               <SocialLink href={personalInfo.linkedin} icon={FaLinkedin}>LinkedIn</SocialLink>
+
               <SocialLink href={personalInfo.github} icon={FaGithub}>GitHub</SocialLink>
+
               <SocialLink href={personalInfo.twitter} icon={FaTwitter}>Twitter</SocialLink>
+
+              <SocialLink href={personalInfo.instagram} icon={FaInstagram}>Instagram</SocialLink>
             </div>
           </motion.div>
 

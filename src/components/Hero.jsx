@@ -59,7 +59,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="order-2 md:order-none flex justify-between items-start mb-8 md:mb-24 w-full border-b border-white/10 pb-8 pt-4 md:pt-0"
+          className="order-2 md:order-none flex justify-between items-start mb-8 md:mb-24 w-full border-b border-white/10 pb-4 pt-4 md:pt-2"
         >
           <div className="hidden md:flex items-center gap-4">
             <div className="h-[1px] w-12 bg-white/20"></div>

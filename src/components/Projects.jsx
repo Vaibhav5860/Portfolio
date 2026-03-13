@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { projects } from '../data';
+import { projects } from '../projectsData';
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0);
