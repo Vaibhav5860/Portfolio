@@ -17,6 +17,8 @@
   html {
     scroll-behavior: smooth;
     cursor: none;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bg) var(--color-bg);
   }
   body {
     background-color: var(--color-bg);
@@ -46,6 +48,25 @@
   ::selection {
     background-color: rgba(255, 255, 255, 0.9);
     color: black;
+  }
+
+  /* Keep scrollbar in theme so it blends into the background */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-bg);
+    border-radius: 9999px;
+    border: 2px solid var(--color-bg);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-bg);
   }
 }
 
