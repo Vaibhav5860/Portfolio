@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✨ Vaibhav Raj - Personal Portfolio
+# ✨ Vaibhav Raj - Personal Portfolio with AI
 
 A modern, responsive personal portfolio website showcasing my projects, skills, services, and an integrated AI assistant.
 
