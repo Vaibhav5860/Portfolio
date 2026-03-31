@@ -19,6 +19,14 @@ A modern, responsive personal portfolio website showcasing my skills, projects, 
 
 This portfolio features a sleek dark-themed design with glassmorphism effects, smooth scroll-triggered animations, and a custom animated cursor. Built with the latest React 19 and modern web technologies to create an engaging user experience.
 
+---
+
+## 🖼️ Profile Preview
+
+| Landing Section | Portfolio Layout |
+|:---:|:---:|
+| ![Landing Section](src/assets/screenshot/Screenshot%202026-03-28%20024120.png) | ![Portfolio Layout](src/assets/screenshot/Screenshot%202026-03-28%20024132.png) |
+
 <div align="center">
 
 ### ⚡ Key Highlights

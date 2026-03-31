@@ -16,6 +16,7 @@ import Profile from './components/Profile';
 import ScrollIndicator from './components/ScrollIndicator';
 import ServiceUnavailable from './components/ServiceUnavailable';
 import LoadingScreen from './components/LoadingScreen';
+import BotWidget from './components/BotWidget';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -51,36 +52,32 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    let progressIntervalId;
-    let completeTimeoutId;
-    let hideLoaderTimeoutId;
+    const LOADER_DURATION_MS = 2500;
+    let animationFrameId;
+    let startTime;
 
     document.body.style.overflow = 'hidden';
 
-    progressIntervalId = window.setInterval(() => {
-      setProgress((currentProgress) => {
-        if (currentProgress >= 92) {
-          return currentProgress;
-        }
+    const animateProgress = (timestamp) => {
+      if (startTime === undefined) {
+        startTime = timestamp;
+      }
 
-        const increment = Math.max(1, Math.round((100 - currentProgress) / 8));
-        return Math.min(currentProgress + increment, 92);
-      });
-    }, 80);
+      const elapsed = timestamp - startTime;
+      const ratio = Math.min(elapsed / LOADER_DURATION_MS, 1);
+      setProgress(ratio * 100);
 
-    completeTimeoutId = window.setTimeout(() => {
-      window.clearInterval(progressIntervalId);
-      setProgress(100);
-
-      hideLoaderTimeoutId = window.setTimeout(() => {
+      if (ratio < 1) {
+        animationFrameId = window.requestAnimationFrame(animateProgress);
+      } else {
         setIsLoading(false);
-      }, 350);
-    }, 1600);
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(animateProgress);
 
     return () => {
-      window.clearInterval(progressIntervalId);
-      window.clearTimeout(completeTimeoutId);
-      window.clearTimeout(hideLoaderTimeoutId);
+      window.cancelAnimationFrame(animationFrameId);
       document.body.style.overflow = '';
     };
   }, []);
@@ -102,6 +99,7 @@ function App() {
           <>
             <Cursor />
             <ScrollIndicator />
+            <BotWidget />
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />

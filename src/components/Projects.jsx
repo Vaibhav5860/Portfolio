@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { projects } from '../projectsData';
+import { personalInfo } from '../personalData';
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0);
@@ -175,6 +176,17 @@ const Projects = () => {
                 </div>
               </motion.div>
             ))}
+
+            <motion.a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noreferrer"
+              variants={listItem}
+              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-mono text-sm uppercase tracking-[0.08em] text-white transition hover:border-white/50 hover:bg-white/10"
+            >
+              View All Projects On GitHub
+              <ArrowUpRight size={16} />
+            </motion.a>
           </motion.div>
 
         </div>
