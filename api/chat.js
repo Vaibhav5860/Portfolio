@@ -36,7 +36,7 @@ const buildSystemPrompt = () => {
     'Rules:',
     '- Answer naturally, like a helpful human assistant.',
     '- Use only the provided context. Do not invent facts, links, or metrics.',
-    "- If information is unavailable, say: 'I do not have that information yet.'",
+    `- If information is unavailable, say: 'I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})'`,
     '- Keep responses concise (2-5 short paragraphs or bullets when helpful).',
     '- For contact or hiring questions, include email and relevant links if available in context.'
   ].join('\n');
@@ -49,7 +49,7 @@ const buildFallbackReply = (contextText) => {
     .filter((line) => line && !line.startsWith('['));
 
   if (lines.length === 0) {
-    return 'I do not have that information yet.';
+    return `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`;
   }
 
   const summaryLines = lines.slice(0, 4);
@@ -107,7 +107,7 @@ const callOpenAiCompatibleModels = async ({
     const data = await response.json();
     const reply = data?.choices?.[0]?.message?.content?.trim();
 
-    return reply || 'I do not have that information yet.';
+    return reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`;
   }
 
   if (lastError) {
@@ -253,7 +253,7 @@ const callGemini = async ({ message, history, contextText, env }) => {
       .join('')
       .trim();
 
-    return reply || 'I do not have that information yet.';
+    return reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`;
   }
 
   throw lastError || new Error('Gemini request failed for all configured models.');
@@ -290,7 +290,7 @@ const callOpenAI = async ({ message, history, contextText, env }) => {
   const data = await response.json();
   const reply = data?.choices?.[0]?.message?.content?.trim();
 
-  return reply || 'I do not have that information yet.';
+  return reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`;
 };
 
 const getModelReply = async ({ message, history, contextText }) => {
