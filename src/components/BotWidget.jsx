@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { Bot, Send, X } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 
 const quickHints = ['/projects', '/services', '/education', '/certificates', '/highlights', '/contact',];
 const initialMessages = [
@@ -13,6 +16,23 @@ const initialMessages = [
 
 const fallbackReply =
   'I am having trouble reaching the AI service right now. Please send me a direct message via the Contact section (/contact), or use the email/LinkedIn links there and I will get back to you soon.';
+
+const normalizeBotReply = (text) => {
+  if (typeof text !== 'string') {
+    return '';
+  }
+
+  let formatted = text.replace(/\r\n/g, '\n').trim();
+
+  const hasNewLines = formatted.includes('\n');
+  const hasUrl = /(https?:\/\/|www\.)/i.test(formatted);
+
+  if (!hasNewLines && !hasUrl && formatted.length > 160) {
+    formatted = formatted.replace(/([.!?])\s+(?=[A-Z0-9])/g, '$1\n\n');
+  }
+
+  return formatted;
+};
 
 const BotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -152,7 +172,24 @@ const BotWidget = () => {
                       Agent
                     </span>
                   )}
-                  {message.text}
+                  {message.from === 'bot' ? (
+                    <div className="prose prose-invert max-w-none text-sm leading-relaxed prose-p:my-2 prose-headings:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:text-cyan-50 prose-a:text-cyan-300 prose-table:my-2 prose-th:border prose-th:border-cyan-200/25 prose-th:px-2 prose-th:py-1 prose-td:border prose-td:border-cyan-200/20 prose-td:px-2 prose-td:py-1">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm, remarkBreaks]}
+                        components={{
+                          table: ({ ...props }) => (
+                            <div className="overflow-x-auto">
+                              <table {...props} />
+                            </div>
+                          )
+                        }}
+                      >
+                        {normalizeBotReply(message.text)}
+                      </ReactMarkdown>
+                    </div>
+                  ) : (
+                    message.text
+                  )}
                 </div>
               ))}
 

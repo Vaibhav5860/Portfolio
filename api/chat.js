@@ -2,6 +2,7 @@ import { buildContextText, getPortfolioIdentity } from '../src/utils/portfolioCo
 
 const MAX_HISTORY = 8;
 const MAX_INPUT_LENGTH = 600;
+const identity = getPortfolioIdentity();
 
 const toHistoryMessages = (history) => {
   if (!Array.isArray(history)) {
@@ -24,8 +25,6 @@ const toHistoryMessages = (history) => {
 };
 
 const buildSystemPrompt = () => {
-  const identity = getPortfolioIdentity();
-
   return [
     'You are a portfolio assistant for a developer website.',
     `Developer name: ${identity.name}`,
@@ -37,9 +36,29 @@ const buildSystemPrompt = () => {
     '- Answer naturally, like a helpful human assistant.',
     '- Use only the provided context. Do not invent facts, links, or metrics.',
     `- If information is unavailable, say: 'I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})'`,
-    '- Keep responses concise (2-5 short paragraphs or bullets when helpful).',
+    '- Keep responses concise and readable (2-5 short paragraphs).',
+    '- Use line breaks between key points. Do not return one long paragraph.',
+    '- Prefer plain, clean text formatting. Avoid decorative markdown characters unless necessary.',
+    '- If comparing multiple items, use a markdown table.',
     '- For contact or hiring questions, include email and relevant links if available in context.'
   ].join('\n');
+};
+
+const formatReplyText = (text) => {
+  if (typeof text !== 'string') {
+    return '';
+  }
+
+  let formatted = text.replace(/\r\n/g, '\n').trim();
+  formatted = formatted.replace(/\n{3,}/g, '\n\n');
+
+  const hasNewLines = formatted.includes('\n');
+  const hasUrl = /(https?:\/\/|www\.)/i.test(formatted);
+  if (!hasNewLines && !hasUrl && formatted.length > 180) {
+    formatted = formatted.replace(/([.!?])\s+(?=[A-Z0-9])/g, '$1\n\n');
+  }
+
+  return formatted;
 };
 
 const buildFallbackReply = (contextText) => {
@@ -107,7 +126,7 @@ const callOpenAiCompatibleModels = async ({
     const data = await response.json();
     const reply = data?.choices?.[0]?.message?.content?.trim();
 
-    return reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`;
+    return formatReplyText(reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`);
   }
 
   if (lastError) {
@@ -253,7 +272,7 @@ const callGemini = async ({ message, history, contextText, env }) => {
       .join('')
       .trim();
 
-    return reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`;
+    return formatReplyText(reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`);
   }
 
   throw lastError || new Error('Gemini request failed for all configured models.');
@@ -290,7 +309,7 @@ const callOpenAI = async ({ message, history, contextText, env }) => {
   const data = await response.json();
   const reply = data?.choices?.[0]?.message?.content?.trim();
 
-  return reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`;
+  return formatReplyText(reply || `I do not have that information yet. You can contact Vaibhav via email for more details. (${identity.email})`);
 };
 
 const getModelReply = async ({ message, history, contextText }) => {
@@ -423,7 +442,7 @@ export default async function handler(req, res) {
 
     try {
       result = await getModelReply({ message, history, contextText });
-      reply = result.reply;
+      reply = formatReplyText(result.reply);
       provider = result.provider;
       usedFallback = provider === 'retrieval';
     } catch {
