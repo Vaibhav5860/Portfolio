@@ -105,12 +105,12 @@ const ProjectDetails = () => {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.2 }}
-                            className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-white/5"
+                            className="relative aspect-video w-full max-w-full rounded-2xl overflow-hidden border border-white/10 bg-white/5"
                         >
                             <img
                                 src={project.image}
                                 alt={project.title}
-                                className="w-full h-full object-cover"
+                                className="block w-full h-full max-w-full object-cover"
                             />
                         </motion.div>
                     </div>

@@ -110,7 +110,7 @@ const Projects = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 block w-full h-full max-w-full object-cover"
                 />
               </AnimatePresence>
 
@@ -155,15 +155,15 @@ const Projects = () => {
                   <span className="text-sm font-mono text-gray-500 pt-2">
                     {project.id}
                   </span>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <h3 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 group-hover:translate-x-2 transition-transform duration-300">
                       {project.title}
                     </h3>
                     <p className="text-gray-400 text-lg font-light mb-4">
                       {project.subtitle}
                     </p>
-                    <div className="lg:hidden mb-6 rounded-xl overflow-hidden h-64 w-full">
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                    <div className="lg:hidden mb-6 rounded-xl overflow-hidden h-64 w-full max-w-full">
+                      <img src={project.image} alt={project.title} className="block w-full h-full max-w-full object-cover" />
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-400 font-light">{project.category}</span>
